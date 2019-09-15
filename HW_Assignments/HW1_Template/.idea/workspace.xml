@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1b5e93ea-ead3-4609-b174-98a8e3015eaa" name="Default" comment="" />
+    <list default="true" id="1b5e93ea-ead3-4609-b174-98a8e3015eaa" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/../../Set_Up_Guide_Homework_1.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../w4111-Databases" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Lectures/Lecture_1/w4111-L1-f2019-Introduction.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Lectures/Lecture_1/w4111-L1-f2019-Introduction.ipynb" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +137,7 @@
       <updated>1567553221415</updated>
       <workItem from="1567942402543" duration="1045000" />
       <workItem from="1568477261311" duration="25000" />
-      <workItem from="1568477329587" duration="19892000" />
+      <workItem from="1568477329587" duration="20086000" />
     </task>
     <servers />
   </component>

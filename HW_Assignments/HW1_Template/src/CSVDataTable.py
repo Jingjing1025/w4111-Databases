@@ -1,4 +1,3 @@
-
 from src.BaseDataTable import BaseDataTable
 import copy
 import csv
@@ -9,6 +8,7 @@ import pandas as pd
 
 pd.set_option("display.width", 256)
 pd.set_option('display.max_columns', 20)
+
 
 class CSVDataTable(BaseDataTable):
     """
@@ -55,13 +55,13 @@ class CSVDataTable(BaseDataTable):
             rows_to_print = self._rows[0:temp_r]
             keys = self._rows[0].keys()
 
-            for i in range(0,CSVDataTable._no_of_separators):
+            for i in range(0, CSVDataTable._no_of_separators):
                 tmp_row = {}
                 for k in keys:
                     tmp_row[k] = "***"
                 rows_to_print.append(tmp_row)
 
-            rows_to_print.extend(self._rows[int(-1*temp_r)-1:-1])
+            rows_to_print.extend(self._rows[int(-1 * temp_r) - 1:-1])
 
         df = pd.DataFrame(rows_to_print)
         result += "\nSome Rows: = \n" + str(df)
@@ -92,6 +92,16 @@ class CSVDataTable(BaseDataTable):
         :return: None
         """
 
+        dir_info = self._data["connect_info"].get("directory")
+        file_n = self._data["connect_info"].get("file_name")
+        full_name = os.path.join(dir_info, file_n)
+
+        with open(full_name, "w") as txt_file:
+            csv_d_wrt = csv.DictWriter(txt_file, fieldnames=self._rows[0].keys())
+            csv_d_wrt.writeheader()
+            for row in self._rows:
+                csv_d_wrt.writerow(row)
+
     @staticmethod
     def matches_template(row, template):
 
@@ -104,6 +114,24 @@ class CSVDataTable(BaseDataTable):
 
         return result
 
+    @staticmethod
+    def matches_key_fields(row, key_columns, key_fields):
+        result = True
+        if key_fields is not None:
+            for i in range(len(key_columns)):
+                if key_fields[i] != row.get(key_columns[i], None):
+                    result = False
+                    break
+
+        return result
+
+    @staticmethod
+    def get_columns(row, col_list):
+        result = {}
+        for c in col_list:
+            result[c] = row[c]
+        return result
+
     def find_by_primary_key(self, key_fields, field_list=None):
         """
 
@@ -112,7 +140,16 @@ class CSVDataTable(BaseDataTable):
         :return: None, or a dictionary containing the requested fields for the record identified
             by the key.
         """
-        pass
+
+        if field_list is None:
+            field_list = self._rows[0]
+
+        result = {}
+        for row in self._rows:
+            if CSVDataTable.matches_key_fields(row, self._data["key_columns"], key_fields):
+                result = CSVDataTable.get_columns(row, field_list)
+
+        return result
 
     def find_by_template(self, template, field_list=None, limit=None, offset=None, order_by=None):
         """
@@ -125,7 +162,13 @@ class CSVDataTable(BaseDataTable):
         :return: A list containing dictionaries. A dictionary is in the list representing each record
             that matches the template. The dictionary only contains the requested fields.
         """
-        pass
+
+        result = []
+        for row in self._rows:
+            if CSVDataTable.matches_template(row, template):
+                result.append(CSVDataTable.get_columns(row, field_list))
+
+        return result
 
     def delete_by_key(self, key_fields):
         """
@@ -135,7 +178,15 @@ class CSVDataTable(BaseDataTable):
         :param template: A template.
         :return: A count of the rows deleted.
         """
-        pass
+
+        result = 0
+        for row in self._rows:
+            if CSVDataTable.matches_key_fields(row, self._data["key_columns"], key_fields):
+                self._rows.remove(row)
+                result += 1
+        CSVDataTable.save(self)
+
+        return result
 
     def delete_by_template(self, template):
         """
@@ -143,7 +194,15 @@ class CSVDataTable(BaseDataTable):
         :param template: Template to determine rows to delete.
         :return: Number of rows deleted.
         """
-        pass
+
+        result = 0
+        for row in self._rows:
+            if CSVDataTable.matches_template(row, template):
+                self._rows.remove(row)
+                result += 1
+        CSVDataTable.save(self)
+
+        return result
 
     def update_by_key(self, key_fields, new_values):
         """
@@ -153,6 +212,20 @@ class CSVDataTable(BaseDataTable):
         :return: Number of rows updated.
         """
 
+        result = 0
+        need_update = 0
+        for row in self._rows:
+            if CSVDataTable.matches_key_fields(row, self._data["key_columns"], key_fields):
+                for k in new_values.keys():
+                    if row[k] != new_values[k]:
+                        need_update = 1
+                    row[k] = new_values[k]
+                if need_update is 1:
+                    result += 1
+
+        CSVDataTable.save(self)
+        return result
+
     def update_by_template(self, template, new_values):
         """
 
@@ -160,7 +233,16 @@ class CSVDataTable(BaseDataTable):
         :param new_values: New values to set for matching fields.
         :return: Number of rows updated.
         """
-        pass
+
+        result = 0
+        for row in self._rows:
+            if CSVDataTable.matches_template(row, template):
+                for k in new_values.keys():
+                    row[k] = new_values[k]
+                result += 1
+        CSVDataTable.save(self)
+
+        return result
 
     def insert(self, new_record):
         """
@@ -168,8 +250,14 @@ class CSVDataTable(BaseDataTable):
         :param new_record: A dictionary representing a row to add to the set of records.
         :return: None
         """
-        pass
+
+        exist = 0
+        for row in self._rows:
+            if CSVDataTable.matches_template(row, new_record):
+                exist = 1
+        if exist is 0:
+            self._rows.append(new_record)
+        CSVDataTable.save(self)
 
     def get_rows(self):
         return self._rows
-

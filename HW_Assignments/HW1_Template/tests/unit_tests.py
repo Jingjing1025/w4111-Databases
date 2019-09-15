@@ -30,4 +30,4 @@ def t_load():
     print("Created table = " + str(csv_tbl))
 
 
-t_load()
+# t_load()

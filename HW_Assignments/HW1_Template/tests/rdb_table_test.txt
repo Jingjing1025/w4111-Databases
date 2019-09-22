@@ -1,0 +1,378 @@
+/anaconda3/envs/HW1_Template/bin/python /Users/jingjing/Documents/Coms_4111/HW_Assignments/HW1_Template/tests/rdb_table_tests.py
+
+===== Testing RDB Load Good (limit 5) =====
+Return code =  5
+Data = 
+[
+  {
+    "playerID": "aardsda01",
+    "birthYear": "1981",
+    "birthMonth": "12",
+    "birthDay": "27",
+    "birthCountry": "USA",
+    "birthState": "CO",
+    "birthCity": "Denver",
+    "deathYear": "",
+    "deathMonth": "",
+    "deathDay": "",
+    "deathCountry": "",
+    "deathState": "",
+    "deathCity": "",
+    "nameFirst": "David",
+    "nameLast": "Aardsma",
+    "nameGiven": "David Allan",
+    "weight": "215",
+    "height": "75",
+    "bats": "R",
+    "throws": "R",
+    "debut": "2004-04-06",
+    "finalGame": "2015-08-23",
+    "retroID": "aardd001",
+    "bbrefID": "aardsda01"
+  },
+  {
+    "playerID": "aaronha01",
+    "birthYear": "1934",
+    "birthMonth": "2",
+    "birthDay": "5",
+    "birthCountry": "USA",
+    "birthState": "AL",
+    "birthCity": "Mobile",
+    "deathYear": "",
+    "deathMonth": "",
+    "deathDay": "",
+    "deathCountry": "",
+    "deathState": "",
+    "deathCity": "",
+    "nameFirst": "Hank",
+    "nameLast": "Aaron",
+    "nameGiven": "Henry Louis",
+    "weight": "180",
+    "height": "72",
+    "bats": "R",
+    "throws": "R",
+    "debut": "1954-04-13",
+    "finalGame": "1976-10-03",
+    "retroID": "aaroh101",
+    "bbrefID": "aaronha01"
+  },
+  {
+    "playerID": "aaronto01",
+    "birthYear": "1939",
+    "birthMonth": "8",
+    "birthDay": "5",
+    "birthCountry": "USA",
+    "birthState": "AL",
+    "birthCity": "Mobile",
+    "deathYear": "1984",
+    "deathMonth": "8",
+    "deathDay": "16",
+    "deathCountry": "USA",
+    "deathState": "GA",
+    "deathCity": "Atlanta",
+    "nameFirst": "Tommie",
+    "nameLast": "Aaron",
+    "nameGiven": "Tommie Lee",
+    "weight": "190",
+    "height": "75",
+    "bats": "R",
+    "throws": "R",
+    "debut": "1962-04-10",
+    "finalGame": "1971-09-26",
+    "retroID": "aarot101",
+    "bbrefID": "aaronto01"
+  },
+  {
+    "playerID": "aasedo01",
+    "birthYear": "1954",
+    "birthMonth": "9",
+    "birthDay": "8",
+    "birthCountry": "USA",
+    "birthState": "CA",
+    "birthCity": "Orange",
+    "deathYear": "",
+    "deathMonth": "",
+    "deathDay": "",
+    "deathCountry": "",
+    "deathState": "",
+    "deathCity": "",
+    "nameFirst": "Don",
+    "nameLast": "Aase",
+    "nameGiven": "Donald William",
+    "weight": "190",
+    "height": "75",
+    "bats": "R",
+    "throws": "R",
+    "debut": "1977-07-26",
+    "finalGame": "1990-10-03",
+    "retroID": "aased001",
+    "bbrefID": "aasedo01"
+  },
+  {
+    "playerID": "abadan01",
+    "birthYear": "1972",
+    "birthMonth": "8",
+    "birthDay": "25",
+    "birthCountry": "USA",
+    "birthState": "FL",
+    "birthCity": "Palm Beach",
+    "deathYear": "",
+    "deathMonth": "",
+    "deathDay": "",
+    "deathCountry": "",
+    "deathState": "",
+    "deathCity": "",
+    "nameFirst": "Andy",
+    "nameLast": "Abad",
+    "nameGiven": "Fausto Andres",
+    "weight": "184",
+    "height": "73",
+    "bats": "L",
+    "throws": "L",
+    "debut": "2001-09-10",
+    "finalGame": "2006-04-13",
+    "retroID": "abada001",
+    "bbrefID": "abadan01"
+  }
+]
+
+Process finished with exit code 0
+
+
+===== Testing RDB Find by Primary Key =====
+Data = 
+[
+  {
+    "playerId": "aardsda01",
+    "yearID": "2004",
+    "stint": 1,
+    "teamID": "SFN"
+  }
+]
+
+
+===== Testing RDB Find by Primary Key with no field list =====
+Data = 
+[
+  {
+    "playerID": "aardsda01",
+    "yearID": "2004",
+    "stint": 1,
+    "teamID": "SFN",
+    "lgID": "NL",
+    "G": "11",
+    "AB": "0",
+    "R": "0",
+    "H": "0",
+    "2B": "0",
+    "3B": "0",
+    "HR": "0",
+    "RBI": "0",
+    "SB": "0",
+    "CS": "0",
+    "BB": "0",
+    "SO": "0",
+    "IBB": "0",
+    "HBP": "0",
+    "SH": "0",
+    "SF": "0",
+    "GIDP": "0"
+  }
+]
+
+Process finished with exit code 0
+
+
+===== Testing RDB Find by Template Good =====
+Data = 
+[
+  {
+    "playerID": "adamsbo01",
+    "birthYear": "1901",
+    "birthState": "MA",
+    "birthCity": "Holyoke",
+    "nameLast": "Adams"
+  },
+  {
+    "playerID": "adamsge01",
+    "birthYear": "1855",
+    "birthState": "MA",
+    "birthCity": "Worcester",
+    "nameLast": "Adams"
+  },
+  {
+    "playerID": "adamsgl01",
+    "birthYear": "1947",
+    "birthState": "MA",
+    "birthCity": "Northbridge",
+    "nameLast": "Adams"
+  }
+]
+
+Process finished with exit code 0
+
+
+===== Testing RDB Delete by Primary Key Good =====
+Number of Rows Deleted =  1
+
+Process finished with exit code 0
+
+
+===== Testing RDB Delete by Template Good =====
+Number of Rows Deleted =  3
+
+Process finished with exit code 0
+
+
+===== Testing RDB Update by Primary Key Good =====
+Number of Rows Updated =  1
+
+Process finished with exit code 0
+
+
+===== Testing RDB Update by Primary Key Bad (Duplicate Key Values) =====
+Traceback (most recent call last):
+  File "/Users/jingjing/Documents/Coms_4111/HW_Assignments/HW1_Template/tests/rdb_table_tests.py", line 216, in <module>
+    t8_update_by_key()
+  File "/Users/jingjing/Documents/Coms_4111/HW_Assignments/HW1_Template/tests/rdb_table_tests.py", line 129, in t8_update_by_key
+    result = table.update_by_key(key_fields, new_values)
+  File "/Users/jingjing/Documents/Coms_4111/HW_Assignments/HW1_Template/src/RDBDataTable.py", line 322, in update_by_key
+    res = run_q(sql, args, fetch=False, commit=True, conn=self._connect_info)
+  File "/Users/jingjing/Documents/Coms_4111/HW_Assignments/HW1_Template/src/RDBDataTable.py", line 59, in run_q
+    raise e
+  File "/Users/jingjing/Documents/Coms_4111/HW_Assignments/HW1_Template/src/RDBDataTable.py", line 48, in run_q
+    res = cur.execute(sql, args)
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/cursors.py", line 170, in execute
+    result = self._query(query)
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/cursors.py", line 328, in _query
+    conn.query(q)
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/connections.py", line 517, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/connections.py", line 732, in _read_query_result
+    result.read()
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/connections.py", line 1075, in read
+    first_packet = self.connection._read_packet()
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/connections.py", line 684, in _read_packet
+    packet.check_error()
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/protocol.py", line 220, in check_error
+    err.raise_mysql_exception(self._data)
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/err.py", line 109, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.IntegrityError: (1062, "Duplicate entry 'abababa01' for key 'PRIMARY'")
+
+Process finished with exit code 1
+
+
+
+===== Testing RDB Update by Template Good =====
+Number of Rows Updated =  8
+
+Process finished with exit code 0
+
+
+
+===== Testing RDB Update by Template Bad (Duplicate Key Values) =====
+Traceback (most recent call last):
+  File "/Users/jingjing/Documents/Coms_4111/HW_Assignments/HW1_Template/tests/rdb_table_tests.py", line 218, in <module>
+    t10_update_by_template()
+  File "/Users/jingjing/Documents/Coms_4111/HW_Assignments/HW1_Template/tests/rdb_table_tests.py", line 160, in t10_update_by_template
+    result = table.update_by_template(template, new_values)
+  File "/Users/jingjing/Documents/Coms_4111/HW_Assignments/HW1_Template/src/RDBDataTable.py", line 339, in update_by_template
+    res = run_q(sql, args, fetch=False, commit=True, conn=self._connect_info)
+  File "/Users/jingjing/Documents/Coms_4111/HW_Assignments/HW1_Template/src/RDBDataTable.py", line 59, in run_q
+    raise e
+  File "/Users/jingjing/Documents/Coms_4111/HW_Assignments/HW1_Template/src/RDBDataTable.py", line 48, in run_q
+    res = cur.execute(sql, args)
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/cursors.py", line 170, in execute
+    result = self._query(query)
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/cursors.py", line 328, in _query
+    conn.query(q)
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/connections.py", line 517, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/connections.py", line 732, in _read_query_result
+    result.read()
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/connections.py", line 1075, in read
+    first_packet = self.connection._read_packet()
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/connections.py", line 684, in _read_packet
+    packet.check_error()
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/protocol.py", line 220, in check_error
+    err.raise_mysql_exception(self._data)
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/err.py", line 109, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.IntegrityError: (1062, "Duplicate entry 'aaronha01' for key 'PRIMARY'")
+
+Process finished with exit code 1
+
+
+
+===== Testing RDB Insert Good =====
+
+Process finished with exit code 0
+
+
+===== Testing RDB Insert Bad (Invalid Columns) =====
+Traceback (most recent call last):
+  File "/Users/jingjing/Documents/Coms_4111/HW_Assignments/HW1_Template/tests/rdb_table_tests.py", line 220, in <module>
+    t12_insert()
+  File "/Users/jingjing/Documents/Coms_4111/HW_Assignments/HW1_Template/tests/rdb_table_tests.py", line 186, in t12_insert
+    table.insert(new_record)
+  File "/Users/jingjing/Documents/Coms_4111/HW_Assignments/HW1_Template/src/RDBDataTable.py", line 355, in insert
+    res = run_q(result, vals, conn=self._connect_info)
+  File "/Users/jingjing/Documents/Coms_4111/HW_Assignments/HW1_Template/src/RDBDataTable.py", line 59, in run_q
+    raise e
+  File "/Users/jingjing/Documents/Coms_4111/HW_Assignments/HW1_Template/src/RDBDataTable.py", line 48, in run_q
+    res = cur.execute(sql, args)
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/cursors.py", line 170, in execute
+    result = self._query(query)
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/cursors.py", line 328, in _query
+    conn.query(q)
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/connections.py", line 517, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/connections.py", line 732, in _read_query_result
+    result.read()
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/connections.py", line 1075, in read
+    first_packet = self.connection._read_packet()
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/connections.py", line 684, in _read_packet
+    packet.check_error()
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/protocol.py", line 220, in check_error
+    err.raise_mysql_exception(self._data)
+  File "/anaconda3/envs/HW1_Template/lib/python3.7/site-packages/pymysql/err.py", line 109, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.InternalError: (1054, "Unknown column 'player' in 'field list'")
+
+Process finished with exit code 1
+
+
+===== Testing RDB Find by Primary Key after insertion =====
+Data = 
+[
+  {
+    "playerID": "inserttest01",
+    "birthYear": "2019",
+    "birthMonth": null,
+    "birthDay": null,
+    "birthCountry": null,
+    "birthState": null,
+    "birthCity": "New York",
+    "deathYear": null,
+    "deathMonth": null,
+    "deathDay": null,
+    "deathCountry": null,
+    "deathState": null,
+    "deathCity": null,
+    "nameFirst": null,
+    "nameLast": null,
+    "nameGiven": null,
+    "weight": null,
+    "height": null,
+    "bats": null,
+    "throws": null,
+    "debut": null,
+    "finalGame": null,
+    "retroID": null,
+    "bbrefID": null
+  }
+]
+
+Process finished with exit code 0
+

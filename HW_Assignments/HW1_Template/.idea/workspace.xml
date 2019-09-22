@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1b5e93ea-ead3-4609-b174-98a8e3015eaa" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/../../Set_Up_Guide_Homework_1.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../w4111-Databases" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Lectures/Lecture_1/w4111-L1-f2019-Introduction.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Lectures/Lecture_1/w4111-L1-f2019-Introduction.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../w4111-Databases" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,6 +49,28 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.CSVtests">
+    <configuration name="CSVDataTable" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="W4111_F19_HW1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/CSVDataTable.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="CSVtests" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="W4111_F19_HW1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -64,7 +84,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/CSVtests.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/csv_table_tests.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -86,7 +106,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/RDBtests.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/rdb_table_tests.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -121,6 +141,7 @@
       <list>
         <item itemvalue="Python.CSVtests" />
         <item itemvalue="Python.tests" />
+        <item itemvalue="Python.CSVDataTable" />
         <item itemvalue="Python.unit_tests" />
       </list>
     </recent_temporary>
@@ -137,7 +158,14 @@
       <updated>1567553221415</updated>
       <workItem from="1567942402543" duration="1045000" />
       <workItem from="1568477261311" duration="25000" />
-      <workItem from="1568477329587" duration="20086000" />
+      <workItem from="1568477329587" duration="20291000" />
+      <workItem from="1568651319751" duration="148000" />
+      <workItem from="1568655651523" duration="5232000" />
+      <workItem from="1568911684799" duration="156000" />
+      <workItem from="1568949217194" duration="361000" />
+      <workItem from="1569083904905" duration="13011000" />
+      <workItem from="1569159776646" duration="3051000" />
+      <workItem from="1569169888904" duration="6386000" />
     </task>
     <servers />
   </component>
@@ -158,8 +186,9 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/HW1_Template$CSVtests.coverage" NAME="CSVtests Coverage Results" MODIFIED="1568584814620" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/HW1_Template$CSVDataTable.coverage" NAME="CSVDataTable Coverage Results" MODIFIED="1569085349639" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/HW1_Template$CSVtests.coverage" NAME="CSVtests Coverage Results" MODIFIED="1569179254828" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/HW1_Template$unit_tests.coverage" NAME="unit_tests Coverage Results" MODIFIED="1568560583496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/HW1_Template$tests.coverage" NAME="tests Coverage Results" MODIFIED="1568572238833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/HW1_Template$tests.coverage" NAME="tests Coverage Results" MODIFIED="1569178897924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
 </project>

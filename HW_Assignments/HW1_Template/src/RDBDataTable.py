@@ -30,7 +30,6 @@ def run_q(sql, args=None, fetch=True, cur=None, conn=None, commit=True):
     connection_created = False
 
     try:
-
         if conn is None:
             connection_created = True
             conn = _get_default_connection()
@@ -218,6 +217,9 @@ class RDBDataTable(BaseDataTable):
             by the key.
         """
 
+        if key_fields is None or len(key_fields) is 0:
+            return None
+
         if field_list is None:
             fields = " * "
         else:
@@ -228,7 +230,7 @@ class RDBDataTable(BaseDataTable):
         args = key_fields
 
         res, data = run_q(sql, args)
-        return res, data
+        return data
 
     def find_by_template(self, template, field_list=None, limit=None, offset=None, order_by=None):
         """
@@ -241,6 +243,10 @@ class RDBDataTable(BaseDataTable):
         :return: A list containing dictionaries. A dictionary is in the list representing each record
             that matches the template. The dictionary only contains the requested fields.
         """
+
+        if template is None or len(template) is 0:
+            return None
+
         if field_list is None:
             fields = " * "
         else:
@@ -250,7 +256,7 @@ class RDBDataTable(BaseDataTable):
         sql = "select " + fields + " from " + self._table_name + " " + w_clause
 
         res, data = run_q(sql, args, conn=self._connect_info)
-        return res, data
+        return data
 
     def delete_by_key(self, key_fields):
         """
@@ -260,6 +266,9 @@ class RDBDataTable(BaseDataTable):
         :param key_fields: list of key_fields that need to be matched.
         :return: A count of the rows deleted.
         """
+
+        if key_fields is None or len(key_fields) is 0:
+            return 0
 
         w_clause = keycolumns_to_where_clause(self._key_columns)
         sql = "delete from " + self._table_name + " " + w_clause
@@ -275,6 +284,9 @@ class RDBDataTable(BaseDataTable):
         :return: Number of rows deleted.
         """
 
+        if template is None or len(template) is 0:
+            return 0
+
         w_clause, args = template_to_where_clause(template)
         sql = "delete from " + self._table_name + " " + w_clause
 
@@ -288,6 +300,9 @@ class RDBDataTable(BaseDataTable):
         :param new_values: A dict of field:value to set for updated row.
         :return: Number of rows updated.
         """
+
+        if key_fields is None or len(key_fields) is 0 or new_values is None or len(new_values) is 0:
+            return 0
 
         set_terms = []
         args = []
@@ -316,6 +331,9 @@ class RDBDataTable(BaseDataTable):
         :return: Number of rows updated.
         """
 
+        if template is None or len(template) is 0 or new_values is None or len(new_values) is 0:
+            return 0
+
         sql, args = create_update(self._table_name, new_values, template)
 
         res = run_q(sql, args, fetch=False, commit=True, conn=self._connect_info)
@@ -329,10 +347,14 @@ class RDBDataTable(BaseDataTable):
         :return: None
         """
 
+        if new_record is None or len(new_record) is 0:
+            return
+
         result, vals = create_insert(self._table_name, new_record)
 
         res = run_q(result, vals, conn=self._connect_info)
-        return res[0]
+
+        return
 
     def get_rows(self):
         return self._rows

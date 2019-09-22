@@ -141,6 +141,9 @@ class CSVDataTable(BaseDataTable):
             by the key.
         """
 
+        if key_fields is None or len(key_fields) is 0:
+            return None
+
         if field_list is None:
             field_list = self._rows[0]
 
@@ -148,6 +151,31 @@ class CSVDataTable(BaseDataTable):
         for row in self._rows:
             if CSVDataTable.matches_key_fields(row, self._data["key_columns"], key_fields):
                 result = CSVDataTable.get_columns(row, field_list)
+
+        return result
+
+    def find_by_primary_key_list(self, key_fields, field_list=None):
+        """
+
+        :param key_fields: The list with the values for the key_columns, in order, to use to find a record.
+        :param field_list: A subset of the fields of the record to return.
+        :return: None, or a list of dictionaries containing the requested fields for the record identified
+            by the key.
+
+        It can be used to check whether there exist multiple primary keys in the table, which should not be
+        allowed.
+        """
+
+        if key_fields is None or len(key_fields) is 0:
+            return None
+
+        if field_list is None:
+            field_list = self._rows[0]
+
+        result = []
+        for row in self._rows:
+            if CSVDataTable.matches_key_fields(row, self._data["key_columns"], key_fields):
+                result.append(CSVDataTable.get_columns(row, field_list))
 
         return result
 
@@ -162,6 +190,12 @@ class CSVDataTable(BaseDataTable):
         :return: A list containing dictionaries. A dictionary is in the list representing each record
             that matches the template. The dictionary only contains the requested fields.
         """
+
+        if template is None or len(template) is 0:
+            return None
+
+        if field_list is None:
+            field_list = self._rows[0]
 
         result = []
         for row in self._rows:
@@ -180,11 +214,17 @@ class CSVDataTable(BaseDataTable):
         """
 
         result = 0
+
+        if key_fields is None or len(key_fields) is 0:
+            return result
+
         for row in self._rows:
             if CSVDataTable.matches_key_fields(row, self._data["key_columns"], key_fields):
                 self._rows.remove(row)
                 result += 1
-        CSVDataTable.save(self)
+
+        if result > 0:
+            CSVDataTable.save(self)
 
         return result
 
@@ -196,11 +236,17 @@ class CSVDataTable(BaseDataTable):
         """
 
         result = 0
-        for row in self._rows:
-            if CSVDataTable.matches_template(row, template):
-                self._rows.remove(row)
-                result += 1
-        CSVDataTable.save(self)
+
+        if template is None or len(template) is 0:
+            return result
+
+        matched_rows = self.find_by_template(template)
+        for row in matched_rows:
+            self._rows.remove(row)
+            result += 1
+
+        if result > 0:
+            CSVDataTable.save(self)
 
         return result
 
@@ -213,7 +259,13 @@ class CSVDataTable(BaseDataTable):
         """
 
         result = 0
+
+        if key_fields is None or len(key_fields) is 0 or new_values is None or len(new_values) is 0:
+            return result
+
         need_update = 0
+        primary_values = []
+        tmp_rows = self._rows.copy()
         for row in self._rows:
             if CSVDataTable.matches_key_fields(row, self._data["key_columns"], key_fields):
                 for k in new_values.keys():
@@ -221,7 +273,14 @@ class CSVDataTable(BaseDataTable):
                         need_update = 1
                     row[k] = new_values[k]
                 if need_update is 1:
+                    for key in self._data["key_columns"]:
+                        if row[key] not in primary_values:
+                            primary_values.append(row[key])
                     result += 1
+
+        if len(self.find_by_primary_key_list(primary_values)) > 1:
+            self._rows = tmp_rows
+            raise Exception("Error when update: duplicate primary key fields found")
 
         CSVDataTable.save(self)
         return result
@@ -235,13 +294,28 @@ class CSVDataTable(BaseDataTable):
         """
 
         result = 0
+
+        if template is None or len(template) is 0 or new_values is None or len(new_values) is 0:
+            return result
+
+        need_update = 0
+        key_fields = []
+        tmp_rows = self._rows.copy()
         for row in self._rows:
             if CSVDataTable.matches_template(row, template):
                 for k in new_values.keys():
+                    if row[k] != new_values[k]:
+                        need_update = 1
                     row[k] = new_values[k]
-                result += 1
-        CSVDataTable.save(self)
+                if need_update is 1:
+                    for key in self._data["key_columns"]:
+                        key_fields.append(row[key])
+                    if len(self.find_by_primary_key_list(key_fields)) > 1:
+                        self._rows = tmp_rows
+                        raise Exception("Error when update: duplicate primary key fields found")
+                    result += 1
 
+        CSVDataTable.save(self)
         return result
 
     def insert(self, new_record):
@@ -251,13 +325,38 @@ class CSVDataTable(BaseDataTable):
         :return: None
         """
 
+        if new_record is None or len(new_record) is 0:
+            return
+
+        key_fields = []
+        my_keys = self._rows[0].keys()
+        for key in new_record.keys():
+            if key not in my_keys:
+                raise Exception("Error when insert: new record does not match with the key fields.")
+
+        for key in self._data["key_columns"]:
+            try:
+                key_fields.append(new_record[key])
+            except Exception as errMsg:
+                raise Exception("Error when insert: primary keys not fully specified.")
+
         exist = 0
+        tmp_rows = self._rows.copy()
         for row in self._rows:
             if CSVDataTable.matches_template(row, new_record):
                 exist = 1
         if exist is 0:
+            for key in self._rows[0].keys():
+                if key not in new_record.keys():
+                    new_record[key] = None
             self._rows.append(new_record)
+
+        if len(self.find_by_primary_key_list(key_fields)) > 1:
+            self._rows = tmp_rows
+            raise Exception("Error when insert duplicate primary key fields found")
+
         CSVDataTable.save(self)
+        return
 
     def get_rows(self):
         return self._rows
